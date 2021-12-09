@@ -1,17 +1,17 @@
-.heatnote_logo{
+.heatnote_logo {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.heatnote_footer_button{
-    font-size: .6rem;
+.heatnote_footer_button {
+    font-size: .9rem;
 }
 
-.heatnote_footer{
+.heatnote_footer {
     text-align: center;
     margin-top: 2rem;
 }
 
-.heatnote_header{
+.heatnote_header {
     text-align: center;
     margin: 2rem 0;
 }

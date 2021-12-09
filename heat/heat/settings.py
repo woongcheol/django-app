@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap5',
     'accountapp',
 ]
 
@@ -132,8 +133,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-  os.path.join(BASE_DIR, "static")
+    BASE_DIR, "static",
 ]
+
 
 from django.urls import reverse_lazy
 
