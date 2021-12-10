@@ -11,6 +11,9 @@
             <span>로그인</span>
         </a>
         {% else %}
+        <a href="{% url 'accountapp:detail' pk=user.pk %}">
+            <span>회원정보</span>
+        </a>
         <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
             <span>로그아웃</span>
         </a>
