@@ -7,7 +7,7 @@
         <div class="mb-4">
             <h4>다음에도 방문해주실거죠?</h4>
         </div>
-        <form action="{% url 'accountapp:delete' pk=user.pk %}" method="post">
+        <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post">
             {% csrf_token %}
             <input type="submit" value="탈퇴하기" class="btn btn-danger rounded-pill col-6 mt-3">
         </form>
