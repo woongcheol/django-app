@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.urls.base import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView, UpdateView
 from accountapp.models import HelloWorld
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
@@ -44,3 +44,8 @@ class AccountUpdateView(UpdateView):
     form_class = AccountUpdateForm
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
+
+class AccountDeleteView(DeleteView):
+    model = User
+    success_url = reverse_lazy('accountapp:login')
+    template_name = 'accountapp/delete.html'

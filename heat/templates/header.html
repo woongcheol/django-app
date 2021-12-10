@@ -10,6 +10,9 @@
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}" style="text-decoration:none; color:black;">
             <span>로그인</span>
         </a>
+        <a href="{% url 'accountapp:create' %}" style="text-decoration:none; color:black;">
+            <span>회원가입</span>
+        </a>
         {% else %}
         <a href="{% url 'accountapp:detail' pk=user.pk %}" style="text-decoration:none; color:black;">
             <span>회원정보</span>
