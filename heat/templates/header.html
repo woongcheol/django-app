@@ -3,9 +3,9 @@
         <h1 class="heatnote_logo">레시피를 찾아줘!</h1>
     </div>
     <div>
-        <span>홈</span>
-        <span>레시피</span>
-        <span>게시판</span>
+        <a href="{% url 'predict:food' %}" style="text-decoration:none; color:black;">
+            <span>레시피 찾기</span>
+        </a>
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}" style="text-decoration:none; color:black;">
             <span>로그인</span>
