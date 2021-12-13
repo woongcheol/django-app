@@ -38,13 +38,16 @@ def home(request):
     html = "<html><body>Tensorflow version is %s.</body></html>" % tf.__version__
     return HttpResponse(html)
 
+
+
+
 def food(request):
-	form = PredictForm(request.POST or None)
+	form = PredictForm(request.POST or None or request.FILES)
 	result = None
 	if form.is_valid():
-		url = form.cleaned_data['url']
-		
-		response = requests.get(url)
+		# url = form.cleaned_data['url']
+		image_upload = form.cleaned_data["음식사진"]
+		response = requests.get(image_upload)
 		image = Image.open(BytesIO(response.content))
 		image = np.asarray(image, dtype=np.uint8)
 		image = cv2.resize(image, dsize=(180, 180)).astype(np.uint8).copy()
