@@ -31,6 +31,10 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential, Model
 
+from django.shortcuts import render, redirect
+from .forms import PredictForm
+from .models import Prediction
+
 warnings.filterwarnings(action='ignore')
 
 
@@ -39,16 +43,33 @@ def home(request):
     return HttpResponse(html)
 
 
-
+def fileUpload(request):
+    if request.method == 'POST':
+        title = request.POST['음식명']
+        img = request.FILES["음식사진"]
+        fileupload = Prediction(
+            음식명=title,
+            음식사진=img,
+        )
+        fileupload.save()
+    else:
+        fileuploadForm = Prediction
+        context = {
+            'fileuploadForm': fileuploadForm,
+        }
+        # return render(request, 'food.html', context)
 
 def food(request):
 	form = PredictForm(request.POST or None or request.FILES)
 	result = None
+	fileUpload(request)
+
 	if form.is_valid():
 		# url = form.cleaned_data['url']
-		image_upload = form.cleaned_data["음식사진"]
-		response = requests.get(image_upload)
-		image = Image.open(BytesIO(response.content))
+		docs = Prediction.objects.last()
+		image = Image.open(docs.음식사진.path)
+		# response = requests.get(image_upload)
+		# image = Image.open(BytesIO(image_upload))
 		image = np.asarray(image, dtype=np.uint8)
 		image = cv2.resize(image, dsize=(180, 180)).astype(np.uint8).copy()
 
