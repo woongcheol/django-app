@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 import numpy as np
 import tensorflow as tf
 import urllib.request as urlrequest
@@ -59,8 +60,9 @@ def fileUpload(request):
         }
         # return render(request, 'food.html', context)
 
+@login_required
 def food(request):
-	form = PredictForm(request.POST or None or request.FILES)
+	form = PredictForm(request.POST or request.FILES)
 	result = None
 	fileUpload(request)
 
